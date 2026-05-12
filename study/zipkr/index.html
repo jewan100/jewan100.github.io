@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>zipkr로 안드로이드 앱 공부하기 | jewan</title>
+  <meta name="description" content="zipkr 프로젝트를 기준으로 AndroidManifest, Application, Activity, Compose, ViewModel, Repository, Hilt, WebView, 빌드/운영까지 해부하며 공부하는 공개용 정리." />
+  <link rel="stylesheet" href="/study/assets/study.css" />
+</head>
+<body>
+  <header class="site-nav">
+    <div class="site-nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">J</span>
+        <span>jewan notes</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/study/">Study</a>
+        <a class="nav-link" href="/privacy/zipkr/">zipkr Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-shell page">
+    <section class="article-hero">
+      <span class="tag">Android Study Pack</span>
+      <h1>zipkr로 안드로이드 앱을<br />처음부터 끝까지 공부하기</h1>
+      <p class="lead">
+        안드로이드 자체를 따로 오래 공부한 뒤 프로젝트를 보는 대신,
+        작은 실제 앱 하나를 끝까지 해부하면서 필요한 기초를 붙이는 방식으로 정리한 학습 팩입니다.
+      </p>
+      <div class="article-meta-row">
+        <span class="chip">Updated 2026-05-06</span>
+        <span class="chip">Compact PDF 51 pages</span>
+        <span class="chip">Android + Compose + Hilt</span>
+      </div>
+      <div class="cta-row">
+        <a class="button" href="/study/assets/android-zipkr-complete-study-pack-compact-2026-05-06.pdf">Compact PDF 열기</a>
+        <a class="button-secondary" href="/study/">Study 목록으로</a>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <aside class="side-panel">
+        <h3>목차</h3>
+        <nav class="toc" aria-label="Table of contents">
+          <a href="#why">왜 이렇게 공부했나</a>
+          <a href="#who">이 자료가 필요한 사람</a>
+          <a href="#inside">무엇이 들어 있나</a>
+          <a href="#phases">10개 Phase</a>
+          <a href="#how">추천 공부 순서</a>
+          <a href="#download">다운로드</a>
+        </nav>
+      </aside>
+
+      <article class="article-body">
+        <section id="why">
+          <h2>왜 이렇게 공부했나</h2>
+          <p>
+            이 자료는 "안드로이드 일반론만 먼저 파는 방식"보다,
+            <code>zipkr</code>라는 실제 앱을 기준으로 앱 진입점부터 화면 상태, 데이터 계층,
+            의존성 주입, 상세 기능, 빌드/운영까지 한 번에 연결해서 이해하는 쪽이 더 효율적이라고 보고 만들었습니다.
+          </p>
+          <blockquote>
+            목표는 "동작한다"가 아니라 "왜 이렇게 짰는지 설명할 수 있다"까지 가는 것입니다.
+          </blockquote>
+          <div class="grid grid-3">
+            <div class="card">
+              <h3>출발점</h3>
+              <p><code>AndroidManifest.xml</code>부터 시작해서 OS가 앱을 어떻게 띄우는지 먼저 잡습니다.</p>
+            </div>
+            <div class="card">
+              <h3>중간 축</h3>
+              <p>Compose 화면, ViewModel 상태, Repository 경계를 따라 데이터가 흘러가는 방향을 봅니다.</p>
+            </div>
+            <div class="card">
+              <h3>마지막 축</h3>
+              <p>Hilt, WebView, 딥링크, 빌드, 운영, 테스트까지 가며 실제 앱 완성도를 공부합니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="who">
+          <h2>이 자료가 필요한 사람</h2>
+          <div class="grid grid-2">
+            <div class="callout">
+              <strong>안드로이드를 이제 막 공부하는 사람</strong>
+              <p>Manifest, Application, Activity, Compose, ViewModel, Hilt 같은 용어가 한 앱 안에서 어떻게 연결되는지 보고 싶은 경우에 맞습니다.</p>
+            </div>
+            <div class="callout">
+              <strong>작은 앱은 만들었지만 구조 설명이 어려운 사람</strong>
+              <p>왜 UI는 상태만 그리고, 왜 Repository가 필요하고, 왜 BuildConfig로 키를 주입하는지까지 설명할 수 있게 돕는 자료입니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="inside">
+          <h2>무엇이 들어 있나</h2>
+          <p>
+            공개용으로는 compact 통합 PDF를 중심에 두고, 내부적으로는 phase별 워크북을 묶어 만들었습니다.
+            내용은 아래 흐름으로 이어집니다.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>구성</th>
+                <th>핵심 내용</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>앱 진입점</td>
+                <td><code>AndroidManifest.xml</code>, <code>ZipkrApp.kt</code>, <code>MainActivity.kt</code></td>
+              </tr>
+              <tr>
+                <td>Compose 화면</td>
+                <td><code>SearchScreen.kt</code>, 상태 보존, side effect, 재구성</td>
+              </tr>
+              <tr>
+                <td>상태 관리</td>
+                <td><code>SearchViewModel</code>, <code>DetailViewModel</code>, <code>StateFlow</code>, debounce</td>
+              </tr>
+              <tr>
+                <td>도메인/데이터</td>
+                <td><code>Address</code>, <code>Coordinate</code>, <code>Result</code>, <code>AppError</code>, Repository</td>
+              </tr>
+              <tr>
+                <td>네트워크/DI</td>
+                <td>Retrofit, OkHttp, Serialization, Hilt, <code>@Binds</code>, <code>@Provides</code></td>
+              </tr>
+              <tr>
+                <td>상세 기능/운영</td>
+                <td>Bottom sheet, WebView, 지도 딥링크, 빌드, signing, R8, 테스트</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="phases">
+          <h2>10개 Phase로 쪼갠 이유</h2>
+          <div class="phase-list">
+            <div class="phase-item">
+              <strong>Phase 1. 안드로이드 앱 진입점</strong>
+              <p>Manifest, Application, Activity, theme, intent-filter를 잡습니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 2. Compose 화면 구조</strong>
+              <p><code>@Composable</code>, <code>remember</code>, <code>Modifier</code>, 재사용 컴포넌트를 이해합니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 3. 상태와 ViewModel</strong>
+              <p><code>StateFlow</code>, <code>debounce</code>, <code>viewModelScope</code>, 상태 머신 관점을 익힙니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 4. 도메인 모델</strong>
+              <p>앱 내부 언어와 외부 DTO를 분리하는 이유를 배웁니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 5. Repository와 데이터 흐름</strong>
+              <p>UI가 저장소/네트워크 구현을 몰라도 되게 만드는 경계를 봅니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 6. 외부 API와 네트워크</strong>
+              <p>Retrofit, OkHttp, converter, API 키 주입을 이해합니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 7. Hilt와 객체 그래프</strong>
+              <p><code>@Inject</code>, <code>@Binds</code>, <code>@Provides</code>, qualifier를 코드로 연결합니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 8. 상세 화면과 지도 기능</strong>
+              <p>Bottom sheet, WebView, 딥링크, copy UX, micro animation을 이해합니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 9. 빌드와 운영</strong>
+              <p>Gradle, version catalog, signing, BuildConfig, release 최적화를 공부합니다.</p>
+            </div>
+            <div class="phase-item">
+              <strong>Phase 10. 테스트와 검증 습관</strong>
+              <p>ViewModel, Repository, util 테스트가 무엇을 보호하는지 봅니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="how">
+          <h2>추천 공부 순서</h2>
+          <ol>
+            <li>앱 아이콘을 눌렀을 때 무엇이 실행되는지부터 먼저 설명해봅니다.</li>
+            <li>그다음 <code>SearchScreen</code>과 <code>SearchViewModel</code>을 같이 읽습니다.</li>
+            <li>모델, Repository, Provider, NetworkModule로 내려가며 데이터 경계를 봅니다.</li>
+            <li>마지막에 Hilt, WebView, 빌드/운영, 테스트로 확장합니다.</li>
+          </ol>
+          <div class="note">
+            <strong>이 자료의 기준</strong>
+            <p>모든 파일을 "역할, 위치 이유, 네이밍, 줄 단위 해설, 기본 개념 연결, 빠지면 깨지는 것" 순서로 설명할 수 있는 상태를 목표로 잡습니다.</p>
+          </div>
+        </section>
+
+        <section id="download">
+          <h2>다운로드</h2>
+          <p>
+            공개용으로 정리한 가장 압축된 버전은 아래 compact PDF입니다.
+            기존 122페이지 통합본을 다시 조정해 51페이지로 줄였습니다.
+          </p>
+          <div class="callout">
+            <strong>zipkr Complete Study Pack Compact</strong>
+            <p>Android 앱 진입점부터 Compose, ViewModel, Repository, Hilt, 지도, 빌드/운영까지 한 번에 읽을 수 있는 인쇄용 자료.</p>
+            <div class="cta-row">
+              <a class="button" href="/study/assets/android-zipkr-complete-study-pack-compact-2026-05-06.pdf">PDF 열기</a>
+              <a class="button-secondary" href="/study/">다른 글 보기</a>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p>이 글은 개인 학습 메모를 공개용 구조로 다시 정리한 버전입니다.</p>
+        </footer>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
